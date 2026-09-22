@@ -97,12 +97,10 @@ function renderResults(container: HTMLElement, results: PickResult[], elapsed: n
   clearElement(container);
 
   const { best, good, normal, bad } = categorizeResults(results);
-  const topScore = best.length > 0 ? Math.max(...best.map(r => r.score)) : 0;
-  const elite = results.filter(r => r.score >= topScore - 5);
 
   const stats = createElement('div', 'result-stats');
   stats.innerHTML = `
-    <span>大吉 ${elite.length} 天</span>
+    <span>大吉 ${best.length} 天</span>
     <span>吉 ${good.length} 天</span>
     <span>平 ${normal.length} 天</span>
     <span>凶 ${bad.length} 天</span>
@@ -111,8 +109,8 @@ function renderResults(container: HTMLElement, results: PickResult[], elapsed: n
   container.appendChild(stats);
 
   const sections: Array<[string, string, PickResult[]]> = [
-    ['best', '大吉之日', good.slice(0, 20)],
-    ['good', '吉日', normal.slice(0, 20)],
+    ['best', '大吉之日', best],
+    ['good', '吉日', good],
   ];
   for (const [cls, title, rows] of sections) {
     if (rows.length === 0) continue;

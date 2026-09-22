@@ -28,14 +28,14 @@ export function renderDayDetail(app: HTMLElement, dateStr: string) {
   const lunarCard = createElement('div', 'card lunar-card');
   const ganzhiParts = [
     `${lunar.yearGanZhi}年`,
-    `${lunar.dayGanZhi}月`,
-    `${lunar.monthGanZhi}日`,
+    `${lunar.monthGanZhi}月`,
+    `${lunar.dayGanZhi}日`,
   ];
   const ganzhiHtml = ganzhiParts.map(p => `<span>${p}</span>`).join('');
   const termBadge = lunar.solarTerm ? `<div class="solar-term-badge">${lunar.solarTerm}</div>` : '';
   lunarCard.innerHTML = `
     <div class="lunar-main">
-      <div class="lunar-date">${lunar.monthName}</div>
+      <div class="lunar-date">${lunar.monthName}${lunar.dayName}</div>
       <div class="ganzhi">${ganzhiHtml}</div>
       <div class="shengxiao">生肖：${lunar.shengxiao}</div>
       ${termBadge}
